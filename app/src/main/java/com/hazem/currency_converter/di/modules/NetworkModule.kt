@@ -1,6 +1,6 @@
 package com.hazem.currency_converter.di.modules
 
-import com.hazem.currency_converter.data.remote.currency.CurrencyService
+import com.hazem.currency_converter.data.remote.currency.service.CurrencyService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,7 +11,7 @@ import retrofit2.Retrofit
 @InstallIn(ViewModelComponent::class)
 class NetworkModule {
     @Provides
-    fun provideCurrencyService(retrofit: Retrofit):CurrencyService {
+    fun provideCurrencyService(retrofit: Retrofit): CurrencyService {
         return retrofit.create(CurrencyService::class.java)
     }
 }

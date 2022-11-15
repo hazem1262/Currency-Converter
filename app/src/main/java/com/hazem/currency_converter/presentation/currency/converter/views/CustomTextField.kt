@@ -1,4 +1,4 @@
-package com.hazem.androidmvistarter.presentation.meals.list.views
+package com.hazem.currency_converter.presentation.currency.converter.views
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.text.KeyboardOptions

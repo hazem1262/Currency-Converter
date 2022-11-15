@@ -4,6 +4,7 @@ import com.hazem.currency_converter.base.BaseRepository
 import com.hazem.currency_converter.data.remote.currency.models.ConvertCurrencyResponse
 import com.hazem.currency_converter.data.remote.currency.models.CurrenciesResponse
 import com.hazem.currency_converter.data.remote.currency.models.TransactionHistoryResponse
+import com.hazem.currency_converter.data.remote.currency.service.CurrencyService
 import com.hazem.currency_converter.utils.coroutines.ContextProviders
 import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject

@@ -29,6 +29,9 @@ class TransactionHistoryActivity : ComponentActivity() {
             }
         }
     }
+    companion object {
+        const val TRANSACTION_HISTORY_EXTRA_KEY = "TRANSACTION_HISTORY_EXTRA_KEY"
+    }
 }
 
 @Composable

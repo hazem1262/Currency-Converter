@@ -1,4 +1,4 @@
-package com.hazem.androidmvistarter.presentation.meals.list.views
+package com.hazem.currency_converter.presentation.currency.converter.views
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -12,16 +12,16 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.hazem.androidmvistarter.data.remote.currency.Symbol
+import com.hazem.currency_converter.presentation.currency.converter.model.CurrencyUiModel
 
 @Composable
 fun CustomDropDownBtn(
     modifier:Modifier = Modifier,
-    currencies:List<Symbol>,
+    currencies:List<CurrencyUiModel>,
+    selectedIndex: Int,
     onSelect: (index:Int) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
-    var selectedIndex by remember { mutableStateOf(0) }
     Box(modifier = modifier.border(1.dp, Color.Gray)) {
         Text(
             currencies[selectedIndex].name,
@@ -36,11 +36,10 @@ fun CustomDropDownBtn(
         ) {
             currencies.forEachIndexed { index, s ->
                 DropdownMenuItem(onClick = {
-                    selectedIndex = index
                     expanded = false
                     onSelect.invoke(index)
                 }) {
-                    Text(text = s.symbol)
+                    Text(text = s.acronym)
                 }
             }
         }

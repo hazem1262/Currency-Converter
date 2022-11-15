@@ -1,4 +1,4 @@
-package com.hazem.currency_converter.data.remote.currency
+package com.hazem.currency_converter.data.remote.currency.service
 
 import com.hazem.currency_converter.data.remote.currency.models.ConvertCurrencyResponse
 import com.hazem.currency_converter.data.remote.currency.models.CurrenciesResponse
