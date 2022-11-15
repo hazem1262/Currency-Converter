@@ -1,6 +1,7 @@
 package com.hazem.currency_converter.di.modules
 
 import com.hazem.currency_converter.BuildConfig
+import com.hazem.currency_converter.utils.coroutines.ContextProviders
 import com.hazem.currency_converter.utils.network.NetworkUtils
 import dagger.Module
 import dagger.Provides
@@ -19,6 +20,9 @@ class AppModule {
 
     @Provides
     fun provideIsDebug() = BuildConfig.DEBUG
+
+    @Provides
+    fun provideContextProviders() = ContextProviders.getInstance()
 
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =

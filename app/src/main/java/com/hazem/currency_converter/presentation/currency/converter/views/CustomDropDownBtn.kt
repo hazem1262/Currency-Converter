@@ -24,7 +24,7 @@ fun CustomDropDownBtn(
     var expanded by remember { mutableStateOf(false) }
     Box(modifier = modifier.border(1.dp, Color.Gray)) {
         Text(
-            currencies[selectedIndex].name,
+            currencies[selectedIndex].acronym,
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable(onClick = { expanded = true })
@@ -39,7 +39,7 @@ fun CustomDropDownBtn(
                     expanded = false
                     onSelect.invoke(index)
                 }) {
-                    Text(text = s.acronym)
+                    Text(text = s.name)
                 }
             }
         }

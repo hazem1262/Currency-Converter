@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import com.hazem.currency_converter.presentation.currency.converter.views.ConvertCurrencyScreen
 import com.hazem.currency_converter.presentation.currency.history.TransactionHistoryActivity
 import com.hazem.currency_converter.ui.theme.CurrencyConverterTheme
+import com.hazem.currency_converter.utils.components.LoadingIndicator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,13 +30,18 @@ class CurrencyConverterActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    if (state.isLoading) {
+                        LoadingIndicator()
+                        return@Surface
+                    }
+
                     ConvertCurrencyScreen(
                         availableCurrencies = state.currencies?: arrayListOf(),
                         onFromSelected = { index ->
-                            viewModel.onFromSelected(index)
+                            viewModel.onNewFromCurrencySelected(index)
                         },
                         onToSelected = {index ->
-                            viewModel.onToSelected(index)
+                            viewModel.onNewToCurrencySelected(index)
                         },
                         fromString = state.fromTextFieldString,
                         onValueFromChanged = {

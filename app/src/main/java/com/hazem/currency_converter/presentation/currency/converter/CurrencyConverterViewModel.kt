@@ -1,35 +1,83 @@
 package com.hazem.currency_converter.presentation.currency.converter
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.hazem.currency_converter.data.remote.currency.CurrencyRepositoryContract
+import com.hazem.currency_converter.presentation.currency.converter.mapper.CurrencyUiMapper
 import com.hazem.currency_converter.presentation.currency.converter.mvi.CurrencyConverterState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class CurrencyConverterViewModel @Inject constructor(
     private val currencyRepository: CurrencyRepositoryContract
 ): ViewModel() {
-    fun getAvailableCurrencies() {
-        TODO("Not yet implemented")
-    }
-
-    fun onFromSelected(index: Int) {
-        TODO("Not yet implemented")
-    }
-
-    fun onToSelected(index: Int) {
-        TODO("Not yet implemented")
-    }
-
-    fun onValueFromChanged(it: String) {
-        TODO("Not yet implemented")
-    }
-
-    fun onValueToChanged(it: String) {
-        TODO("Not yet implemented")
-    }
-
     val uiState = MutableStateFlow(CurrencyConverterState())
+
+    fun getAvailableCurrencies() {
+        viewModelScope.launch {
+            val availableCurrencyResponse = currencyRepository.getAvailableCurrencies()
+            val availableCurrencies = CurrencyUiMapper.toCurrencyUiModel(availableCurrencyResponse)
+            uiState.value = uiState.value.copy(currencies = availableCurrencies, selectedFrom = availableCurrencies.first(), selectedTo = availableCurrencies.first())
+        }
+    }
+
+    private fun convertCurrency() {
+        val currentState = uiState.value
+        if (currentState.fromTextFieldString.toDoubleOrNull() == null) return
+        viewModelScope.launch {
+            val convertResponse = currencyRepository.covertCurrency(
+                from = currentState.selectedFrom?.acronym?:"",
+                to = currentState.selectedTo?.acronym?:"",
+                amount = currentState.fromTextFieldString.toDouble()
+            )
+            uiState.value = uiState.value.copy(toTextFieldString = convertResponse.result?:"")
+        }
+    }
+
+    private fun convertCurrencyRevered() {
+        val currentState = uiState.value
+        if (currentState.toTextFieldString.toDoubleOrNull() == null) return
+        viewModelScope.launch {
+            val convertResponse = currencyRepository.covertCurrency(
+                from = currentState.selectedTo?.acronym?:"",
+                to = currentState.selectedFrom?.acronym?:"",
+                amount = currentState.toTextFieldString.toDouble()
+            )
+            uiState.value = uiState.value.copy(fromTextFieldString = convertResponse.result?:"")
+        }
+    }
+
+    private fun checkIfConversionNeeded() {
+        val currentState = uiState.value
+        if(currentState.fromTextFieldString.isNotEmpty()) {
+            convertCurrency()
+        } else if(currentState.toTextFieldString.isNotEmpty()) {
+            convertCurrencyRevered()
+        }
+    }
+
+    fun onNewFromCurrencySelected(index: Int) {
+        val newSelectedFromCurrency = uiState.value.currencies?.get(index)
+        uiState.value = uiState.value.copy(selectedFrom = newSelectedFromCurrency)
+        checkIfConversionNeeded()
+    }
+
+    fun onNewToCurrencySelected(index: Int) {
+        val newSelectedToCurrency = uiState.value.currencies?.get(index)
+        uiState.value = uiState.value.copy(selectedTo = newSelectedToCurrency)
+        checkIfConversionNeeded()
+    }
+
+    fun onValueFromChanged(newValue: String) {
+        uiState.value = uiState.value.copy(fromTextFieldString = newValue)
+        if(newValue.isNotEmpty()) convertCurrency()
+    }
+
+    fun onValueToChanged(newValue: String) {
+        uiState.value = uiState.value.copy(toTextFieldString = newValue)
+        if (newValue.isNotEmpty()) convertCurrencyRevered()
+    }
 }

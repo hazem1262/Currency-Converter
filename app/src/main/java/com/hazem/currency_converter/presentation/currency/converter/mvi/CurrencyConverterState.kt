@@ -9,8 +9,8 @@ data class CurrencyConverterState(
     var selectedTo:CurrencyUiModel? = null,
     var convertedToCurrency:String = "",
     var convertedFromCurrency:String = "",
-    var fromTextFieldString:String = "",
-    var toTextFieldString:String = "",
+    var fromTextFieldString:String = "1",
+    var toTextFieldString:String = "1",
     var selectedIndexToCurrency:Int = 0,
     var selectedIndexFromCurrency:Int = 0,
     var exception:ApplicationException? = null
