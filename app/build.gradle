@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.currency_converter'
+    namespace 'com.hazem.currency_converter'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.currency_converter"
+        applicationId "com.hazem.currency_converter"
         minSdk 23
         targetSdk 32
         versionCode 1

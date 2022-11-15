@@ -1,4 +1,4 @@
-package com.example.currency_converter
+package com.hazem.currency_converter
 
 import org.junit.Test
 

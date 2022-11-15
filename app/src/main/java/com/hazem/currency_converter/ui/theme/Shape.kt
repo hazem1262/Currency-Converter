@@ -1,4 +1,4 @@
-package com.example.currency_converter.ui.theme
+package com.hazem.currency_converter.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

@@ -1,4 +1,4 @@
-package com.example.currency_converter.ui.theme
+package com.hazem.currency_converter.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
