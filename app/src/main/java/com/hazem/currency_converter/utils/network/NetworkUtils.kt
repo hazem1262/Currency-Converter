@@ -1,4 +1,4 @@
-package com.hazem.androidmvistarter.utils.network
+package com.hazem.currency_converter.utils.network
 
 object NetworkUtils {
     const val BASE_URL = "https://api.apilayer.com/"
