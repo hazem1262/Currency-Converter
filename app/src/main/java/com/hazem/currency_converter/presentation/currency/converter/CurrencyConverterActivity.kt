@@ -1,4 +1,4 @@
-package com.hazem.currency_converter
+package com.hazem.currency_converter.presentation.currency.converter
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.hazem.currency_converter.ui.theme.CurrencyConverterTheme
 
-class MainActivity : ComponentActivity() {
+class CurrencyConverterActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

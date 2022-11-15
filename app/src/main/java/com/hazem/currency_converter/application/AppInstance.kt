@@ -1,4 +1,4 @@
-package com.hazem.androidmvistarter.application
+package com.hazem.currency_converter.application
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

@@ -10,7 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.hazem.currency_converter.presentation.currency.history.ui.theme.CurrencyConverterTheme
+import com.hazem.currency_converter.ui.theme.CurrencyConverterTheme
 
 class TransactionHistoryActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

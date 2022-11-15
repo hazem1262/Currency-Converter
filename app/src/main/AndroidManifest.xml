@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".application.AppInstance"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,9 +14,17 @@
         android:theme="@style/Theme.CurrencyConverter"
         tools:targetApi="31">
         <activity
+            android:name=".TransactionHistoryActivity"
+            android:exported="false"
+            android:label="@string/title_activity_transaction_history"
+            android:theme="@style/Theme.CurrencyConverter">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.CurrencyConverter">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
