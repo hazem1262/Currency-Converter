@@ -56,8 +56,11 @@ class CurrencyConverterActivity : ComponentActivity() {
                             intent.putExtra(TransactionHistoryActivity.TRANSACTION_HISTORY_EXTRA_KEY, "")
                             startActivity(intent)
                         },
-                        initialSelectedToIndex = state.selectedIndexToCurrency,
-                        initialSelectedFromIndex = state.selectedIndexFromCurrency
+                        onSwapClicked = {
+                          viewModel.swapValues()
+                        },
+                        initialSelectedToIndex = state.selectedToCurrency?.let { state.currencies?.indexOf(it) }?:0,
+                        initialSelectedFromIndex = state.selectedFromCurrency?.let { state.currencies?.indexOf(it) }?:0
                     )
                 }
             }

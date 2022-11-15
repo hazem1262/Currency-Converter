@@ -20,7 +20,7 @@ class CurrencyConverterViewModel @Inject constructor(
         viewModelScope.launch {
             val availableCurrencyResponse = currencyRepository.getAvailableCurrencies()
             val availableCurrencies = CurrencyUiMapper.toCurrencyUiModel(availableCurrencyResponse)
-            uiState.value = uiState.value.copy(currencies = availableCurrencies, selectedFrom = availableCurrencies.first(), selectedTo = availableCurrencies.first())
+            uiState.value = uiState.value.copy(currencies = availableCurrencies, selectedFromCurrency = availableCurrencies.first(), selectedToCurrency = availableCurrencies.first())
         }
     }
 
@@ -29,8 +29,8 @@ class CurrencyConverterViewModel @Inject constructor(
         if (currentState.fromTextFieldString.toDoubleOrNull() == null) return
         viewModelScope.launch {
             val convertResponse = currencyRepository.covertCurrency(
-                from = currentState.selectedFrom?.acronym?:"",
-                to = currentState.selectedTo?.acronym?:"",
+                from = currentState.selectedFromCurrency?.acronym?:"",
+                to = currentState.selectedToCurrency?.acronym?:"",
                 amount = currentState.fromTextFieldString.toDouble()
             )
             uiState.value = uiState.value.copy(toTextFieldString = convertResponse.result?:"")
@@ -42,8 +42,8 @@ class CurrencyConverterViewModel @Inject constructor(
         if (currentState.toTextFieldString.toDoubleOrNull() == null) return
         viewModelScope.launch {
             val convertResponse = currencyRepository.covertCurrency(
-                from = currentState.selectedTo?.acronym?:"",
-                to = currentState.selectedFrom?.acronym?:"",
+                from = currentState.selectedToCurrency?.acronym?:"",
+                to = currentState.selectedFromCurrency?.acronym?:"",
                 amount = currentState.toTextFieldString.toDouble()
             )
             uiState.value = uiState.value.copy(fromTextFieldString = convertResponse.result?:"")
@@ -61,13 +61,13 @@ class CurrencyConverterViewModel @Inject constructor(
 
     fun onNewFromCurrencySelected(index: Int) {
         val newSelectedFromCurrency = uiState.value.currencies?.get(index)
-        uiState.value = uiState.value.copy(selectedFrom = newSelectedFromCurrency)
+        uiState.value = uiState.value.copy(selectedFromCurrency = newSelectedFromCurrency)
         checkIfConversionNeeded()
     }
 
     fun onNewToCurrencySelected(index: Int) {
         val newSelectedToCurrency = uiState.value.currencies?.get(index)
-        uiState.value = uiState.value.copy(selectedTo = newSelectedToCurrency)
+        uiState.value = uiState.value.copy(selectedToCurrency = newSelectedToCurrency)
         checkIfConversionNeeded()
     }
 
@@ -79,5 +79,12 @@ class CurrencyConverterViewModel @Inject constructor(
     fun onValueToChanged(newValue: String) {
         uiState.value = uiState.value.copy(toTextFieldString = newValue)
         if (newValue.isNotEmpty()) convertCurrencyRevered()
+    }
+
+    fun swapValues() {
+        val currentState = uiState.value
+        val tempCurrency = currentState.selectedFromCurrency
+        uiState.value = uiState.value.copy(selectedFromCurrency = currentState.selectedToCurrency, selectedToCurrency = tempCurrency)
+        convertCurrency()
     }
 }

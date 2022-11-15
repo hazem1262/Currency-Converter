@@ -24,10 +24,11 @@ fun ConvertCurrencyScreen(
     toString:String,
     onValueToChanged:(String) -> Unit,
     onDetailsClicked:() -> Unit,
+    onSwapClicked:() -> Unit,
     initialSelectedFromIndex:Int,
     initialSelectedToIndex:Int
 ) {
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(modifier = Modifier.padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Row (verticalAlignment = Alignment.CenterVertically) {
             CustomDropDownBtn(
                 modifier = Modifier.weight(1f),
@@ -35,7 +36,12 @@ fun ConvertCurrencyScreen(
                 onSelect = onFromSelected,
                 selectedIndex = initialSelectedFromIndex
             )
-            Icon(Icons.Filled.Transform, "Convert", modifier = Modifier.padding(horizontal = 8.dp))
+            Button(modifier = Modifier.padding(horizontal = 8.dp), onClick = { onSwapClicked.invoke() }) {
+                Icon(
+                    Icons.Filled.Transform,
+                    stringResource(id = R.string.convert),
+                )
+            }
             CustomDropDownBtn(
                 modifier = Modifier.weight(1f),
                 currencies = availableCurrencies,
@@ -44,7 +50,7 @@ fun ConvertCurrencyScreen(
             )
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
         Row {
             CustomTextField(
@@ -60,6 +66,8 @@ fun ConvertCurrencyScreen(
             )
         }
 
+        Spacer(modifier = Modifier.height(32.dp))
+        
         Button(onClick = onDetailsClicked) {
             Text(text = stringResource(id = R.string.details))
         }

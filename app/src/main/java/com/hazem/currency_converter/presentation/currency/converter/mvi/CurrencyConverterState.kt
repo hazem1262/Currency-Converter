@@ -5,14 +5,12 @@ import com.hazem.currency_converter.utils.network.ApplicationException
 
 data class CurrencyConverterState(
     val currencies:List<CurrencyUiModel>? = null,
-    var selectedFrom:CurrencyUiModel? = null,
-    var selectedTo:CurrencyUiModel? = null,
+    var selectedFromCurrency:CurrencyUiModel? = null,
+    var selectedToCurrency:CurrencyUiModel? = null,
     var convertedToCurrency:String = "",
     var convertedFromCurrency:String = "",
     var fromTextFieldString:String = "1",
     var toTextFieldString:String = "1",
-    var selectedIndexToCurrency:Int = 0,
-    var selectedIndexFromCurrency:Int = 0,
     var exception:ApplicationException? = null
 ) {
     val isLoading get() = exception == null && currencies == null
