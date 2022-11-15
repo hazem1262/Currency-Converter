@@ -1,4 +1,4 @@
-package com.hazem.androidmvistarter.utils.coroutines
+package com.hazem.currency_converter.utils.coroutines
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

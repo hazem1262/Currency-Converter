@@ -1,8 +1,8 @@
-package com.hazem.androidmvistarter.base
+package com.hazem.currency_converter.base
 
-import com.hazem.androidmvistarter.utils.coroutines.ContextProviders
-import com.hazem.androidmvistarter.utils.network.ApplicationException
-import com.hazem.androidmvistarter.utils.network.ErrorType
+import com.hazem.currency_converter.utils.coroutines.ContextProviders
+import com.hazem.currency_converter.utils.network.ApplicationException
+import com.hazem.currency_converter.utils.network.ErrorType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.withContext
 import org.json.JSONObject

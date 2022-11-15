@@ -1,4 +1,4 @@
-package com.hazem.androidmvistarter.utils.network
+package com.hazem.currency_converter.utils.network
 
 import org.json.JSONObject
 
