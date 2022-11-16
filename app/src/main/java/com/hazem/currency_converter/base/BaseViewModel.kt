@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 open class BaseViewModel @Inject constructor(): ViewModel() {
@@ -34,6 +35,8 @@ open class BaseViewModel @Inject constructor(): ViewModel() {
                 ErrorType.Network.NoInternetConnection -> {}
                 else -> {}
             }
+        } else if(throwable is UnknownHostException) {
+            // todo handle no internet connection
         }
     }
 }

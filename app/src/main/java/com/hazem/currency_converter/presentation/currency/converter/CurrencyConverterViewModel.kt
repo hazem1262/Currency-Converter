@@ -6,6 +6,7 @@ import com.hazem.currency_converter.presentation.currency.converter.mapper.Curre
 import com.hazem.currency_converter.presentation.currency.converter.mvi.CurrencyConverterState
 import com.hazem.currency_converter.presentation.currency.history.model.TransactionHistoryArgs
 import com.hazem.currency_converter.utils.network.ApplicationException
+import com.hazem.currency_converter.utils.network.noInternetConnectionException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import javax.inject.Inject
@@ -20,7 +21,12 @@ class CurrencyConverterViewModel @Inject constructor(
         wrapBlockingOperation {
             val availableCurrencyResponse = currencyRepository.getAvailableCurrencies()
             val availableCurrencies = CurrencyUiMapper.toCurrencyUiModel(availableCurrencyResponse)
-            uiState.value = uiState.value.copy(currencies = availableCurrencies, selectedFromCurrency = availableCurrencies.first(), selectedToCurrency = availableCurrencies.first())
+            uiState.value = uiState.value.copy(
+                currencies = availableCurrencies,
+                selectedFromCurrency = availableCurrencies.first(),
+                selectedToCurrency = availableCurrencies.first(),
+                exception = null
+            )
         }
     }
 
@@ -33,7 +39,7 @@ class CurrencyConverterViewModel @Inject constructor(
                 to = currentState.selectedToCurrency?.acronym?:"",
                 amount = currentState.fromTextFieldString.toDouble()
             )
-            uiState.value = uiState.value.copy(toTextFieldString = convertResponse.result?:"")
+            uiState.value = uiState.value.copy(toTextFieldString = convertResponse.result?:"", exception = null)
         }
     }
 
@@ -46,7 +52,7 @@ class CurrencyConverterViewModel @Inject constructor(
                 to = currentState.selectedFromCurrency?.acronym?:"",
                 amount = currentState.toTextFieldString.toDouble()
             )
-            uiState.value = uiState.value.copy(fromTextFieldString = convertResponse.result?:"")
+            uiState.value = uiState.value.copy(fromTextFieldString = convertResponse.result?:"", exception = null)
         }
     }
 
@@ -96,6 +102,8 @@ class CurrencyConverterViewModel @Inject constructor(
     override fun handelError(throwable: Throwable) {
         if (throwable is ApplicationException) {
             uiState.value = uiState.value.copy(exception = throwable)
+        } else {
+            uiState.value = uiState.value.copy(exception = noInternetConnectionException)
         }
     }
 }

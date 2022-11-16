@@ -9,6 +9,7 @@ import com.hazem.currency_converter.presentation.currency.history.mvi.Transactio
 import com.hazem.currency_converter.utils.date.getDayBeforeYesterdayFormatted
 import com.hazem.currency_converter.utils.date.getTodayFormatted
 import com.hazem.currency_converter.utils.network.ApplicationException
+import com.hazem.currency_converter.utils.network.noInternetConnectionException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -28,7 +29,8 @@ class TransactionHistoryViewModel @Inject constructor(
 
             uiState.value = uiState.value.copy(
                 historicalList = historicalList,
-                otherCurrenciesList = otherCurrenciesData
+                otherCurrenciesList = otherCurrenciesData,
+                exception = null
             )
         }
     }
@@ -36,6 +38,8 @@ class TransactionHistoryViewModel @Inject constructor(
     override fun handelError(throwable: Throwable) {
         if (throwable is ApplicationException) {
             uiState.value = uiState.value.copy(exception = throwable)
+        } else {
+            uiState.value = uiState.value.copy(exception = noInternetConnectionException)
         }
     }
 }

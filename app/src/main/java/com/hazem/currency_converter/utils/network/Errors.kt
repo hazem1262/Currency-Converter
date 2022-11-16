@@ -23,3 +23,8 @@ sealed class ErrorType {
     object UserError : ErrorType()
 
 }
+
+val noInternetConnectionException = ApplicationException(
+    type = ErrorType.Network.NoInternetConnection,
+    errorMessage = "No Internet Connection"
+)
