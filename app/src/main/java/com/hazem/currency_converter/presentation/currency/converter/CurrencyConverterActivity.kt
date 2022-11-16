@@ -30,11 +30,6 @@ class CurrencyConverterActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    if (state.isLoading) {
-                        LoadingIndicator()
-                        return@Surface
-                    }
-
                     ConvertCurrencyScreen(
                         availableCurrencies = state.currencies?: arrayListOf(),
                         onFromSelected = { index ->
@@ -60,7 +55,8 @@ class CurrencyConverterActivity : ComponentActivity() {
                           viewModel.swapValues()
                         },
                         initialSelectedToIndex = state.selectedToCurrency?.let { state.currencies?.indexOf(it) }?:0,
-                        initialSelectedFromIndex = state.selectedFromCurrency?.let { state.currencies?.indexOf(it) }?:0
+                        initialSelectedFromIndex = state.selectedFromCurrency?.let { state.currencies?.indexOf(it) }?:0,
+                        isLoading = state.isLoading
                     )
                 }
             }

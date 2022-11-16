@@ -9,13 +9,16 @@ import androidx.compose.material.icons.filled.Transform
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.hazem.currency_converter.R
 import com.hazem.currency_converter.presentation.currency.converter.model.CurrencyUiModel
+import com.hazem.currency_converter.utils.components.LoadingIndicator
 
 @Composable
 fun ConvertCurrencyScreen(
+    isLoading:Boolean,
     availableCurrencies:List<CurrencyUiModel>,
     onFromSelected: (index:Int) -> Unit,
     onToSelected: (index:Int) -> Unit,
@@ -28,7 +31,11 @@ fun ConvertCurrencyScreen(
     initialSelectedFromIndex:Int,
     initialSelectedToIndex:Int
 ) {
-    Column(modifier = Modifier.padding(16.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+    if (isLoading) {
+        LoadingIndicator()
+        return
+    }
+    Column(modifier = Modifier.padding(16.dp).testTag(CONVERT_CURRENCY_SCREEN_TAG), horizontalAlignment = Alignment.CenterHorizontally) {
         Row (verticalAlignment = Alignment.CenterVertically) {
             CustomDropDownBtn(
                 modifier = Modifier.weight(1f),
@@ -73,3 +80,5 @@ fun ConvertCurrencyScreen(
         }
     }
 }
+
+const val CONVERT_CURRENCY_SCREEN_TAG = "CONVERT_CURRENCY_SCREEN_TAG"
