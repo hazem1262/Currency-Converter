@@ -6,10 +6,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.hazem.currency_converter.presentation.currency.history.model.TransactionHistoryArgs
 import com.hazem.currency_converter.presentation.currency.history.views.TransactionHistoryScreen
 import com.hazem.currency_converter.ui.theme.CurrencyConverterTheme
@@ -34,7 +36,7 @@ class TransactionHistoryActivity : ComponentActivity() {
             CurrencyConverterTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxSize().padding(16.dp),
                     color = MaterialTheme.colors.background
                 ) {
                     state.exception?.let {

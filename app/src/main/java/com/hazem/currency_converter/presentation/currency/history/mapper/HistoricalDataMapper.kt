@@ -29,7 +29,7 @@ object HistoricalDataMapper {
         val todayTransactions = response.rates.entries.find {
             it.key == today
         }
-        todayTransactions?.value?.entries?.take(10)?.forEach {
+        todayTransactions?.value?.entries?.filter { it.key != response.base }?.take(10)?.forEach {
             currencyRates.add(
                 CurrencyRate(
                     currencyFrom = response.base,

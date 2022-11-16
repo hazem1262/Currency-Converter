@@ -21,7 +21,7 @@ class TransactionHistoryViewModel @Inject constructor(
     val uiState = MutableStateFlow(TransactionHistoryState())
 
     fun getHistoricalData(transactionHistoryArgs: TransactionHistoryArgs) {
-        viewModelScope.launch {
+        wrapBlockingOperation {
             val currencyHistoryDataResponse = currencyRepository.getTransactionHistoricalData(startDate = getDayBeforeYesterdayFormatted(), endDate = getTodayFormatted(), base = transactionHistoryArgs.from)
             val historicalList = HistoricalDataMapper.toTransactionHistoryData(currencyHistoryDataResponse, transactionHistoryArgs.to)
             val otherCurrenciesData = HistoricalDataMapper.toOtherCurrenciesData(currencyHistoryDataResponse)

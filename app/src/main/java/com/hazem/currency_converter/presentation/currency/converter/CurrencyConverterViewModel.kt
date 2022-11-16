@@ -1,6 +1,5 @@
 package com.hazem.currency_converter.presentation.currency.converter
 
-import androidx.lifecycle.viewModelScope
 import com.hazem.currency_converter.base.BaseViewModel
 import com.hazem.currency_converter.data.remote.currency.CurrencyRepositoryContract
 import com.hazem.currency_converter.presentation.currency.converter.mapper.CurrencyUiMapper
@@ -9,7 +8,6 @@ import com.hazem.currency_converter.presentation.currency.history.model.Transact
 import com.hazem.currency_converter.utils.network.ApplicationException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -29,7 +27,7 @@ class CurrencyConverterViewModel @Inject constructor(
     private fun convertCurrency() {
         val currentState = uiState.value
         if (currentState.fromTextFieldString.toDoubleOrNull() == null) return
-        viewModelScope.launch {
+        wrapBlockingOperation {
             val convertResponse = currencyRepository.covertCurrency(
                 from = currentState.selectedFromCurrency?.acronym?:"",
                 to = currentState.selectedToCurrency?.acronym?:"",
@@ -42,7 +40,7 @@ class CurrencyConverterViewModel @Inject constructor(
     private fun convertCurrencyRevered() {
         val currentState = uiState.value
         if (currentState.toTextFieldString.toDoubleOrNull() == null) return
-        viewModelScope.launch {
+        wrapBlockingOperation {
             val convertResponse = currencyRepository.covertCurrency(
                 from = currentState.selectedToCurrency?.acronym?:"",
                 to = currentState.selectedFromCurrency?.acronym?:"",
