@@ -18,14 +18,13 @@ MVI design pattern as recommended in docs [guide to app architecture](https://de
 * [UI Testing] test compose components
 ## Demo
 
-<img src="https://github.com/hazem1262/Aspire-task/blob/exercise_one/WW-Exercise-01/results/demo.gif" width="300" height="700">
-&emsp;&emsp;&emsp;
+<img src="https://github.com/hazem1262/Currency-Converter/blob/master/results/demo.gif" width="300" height="700">
 
 ## Error Handling
-<img src="https://github.com/hazem1262/Aspire-task/blob/exercise_one/WW-Exercise-01/results/error.gif" width="300"  height="700">
-<img src="https://github.com/hazem1262/Aspire-task/blob/exercise_one/WW-Exercise-01/results/auth_error.png" width="300"  height="700">
-<img src="https://github.com/hazem1262/Aspire-task/blob/exercise_one/WW-Exercise-01/results/api_error.png" width="300"  height="700">
-<img src="https://github.com/hazem1262/Aspire-task/blob/exercise_one/WW-Exercise-01/results/no_internet_error.png" width="300"  height="700">
+<img src="https://github.com/hazem1262/Currency-Converter/blob/master/results/error.gif" width="300"  height="700">
+<img src="https://github.com/hazem1262/Currency-Converter/blob/master/results/auth_error.png" width="300"  height="700">
+<img src="https://github.com/hazem1262/Currency-Converter/blob/master/results/api_error.png" width="300"  height="700">
+<img src="https://github.com/hazem1262/Currency-Converter/blob/master/results/no_internet_error.png" width="300"  height="700">
 
 ## TO DO
 * add more styling
