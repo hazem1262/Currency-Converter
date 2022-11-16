@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.hazem.currency_converter.R
 import com.hazem.currency_converter.presentation.currency.converter.model.CurrencyUiModel
 import com.hazem.currency_converter.utils.components.LoadingIndicator
+import com.jaikeerthick.composable_graphs.composables.BarGraph
 
 @Composable
 fun ConvertCurrencyScreen(

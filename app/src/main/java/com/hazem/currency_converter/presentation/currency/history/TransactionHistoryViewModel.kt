@@ -24,7 +24,11 @@ class TransactionHistoryViewModel @Inject constructor(
             val currencyHistoryDataResponse = currencyRepository.getTransactionHistoricalData(startDate = getDayBeforeYesterdayFormatted(), endDate = getTodayFormatted(), base = transactionHistoryArgs.from)
             val historicalList = HistoricalDataMapper.toTransactionHistoryData(currencyHistoryDataResponse, transactionHistoryArgs.to)
             val otherCurrenciesData = HistoricalDataMapper.toOtherCurrenciesData(currencyHistoryDataResponse)
-            uiState.value = uiState.value.copy(historicalList = historicalList, otherCurrenciesList = otherCurrenciesData)
+
+            uiState.value = uiState.value.copy(
+                historicalList = historicalList,
+                otherCurrenciesList = otherCurrenciesData
+            )
         }
     }
 }
