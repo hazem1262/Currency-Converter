@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @JsonClass(generateAdapter = true)
-data class ConvertCurrencyResponse(val success:Boolean, val query:Query?, val info: Info?, val date:String?, val result:String?) : Parcelable
+data class ConvertCurrencyResponse(val success:Boolean, val query:Query? = null, val info: Info? = null, val date:String? = null, val result:String?) : Parcelable
 
 @Parcelize
 @JsonClass(generateAdapter = true)

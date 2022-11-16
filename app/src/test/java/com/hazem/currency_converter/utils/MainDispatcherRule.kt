@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.hazem.androidmvistarter.presentation.util
+package com.hazem.currency_converter.utils
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -29,13 +30,15 @@ import org.junit.runner.Description
  * A JUnit [TestRule] that sets the Main dispatcher to [testDispatcher]
  * for the duration of the test.
  */
-class MainDispatcherRule(
-    val testDispatcher: TestDispatcher = UnconfinedTestDispatcher(),
+class MainDispatcherRule @OptIn(ExperimentalCoroutinesApi::class) constructor(
+    private val testDispatcher: TestDispatcher = UnconfinedTestDispatcher(),
 ) : TestWatcher() {
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun starting(description: Description) {
         Dispatchers.setMain(testDispatcher)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun finished(description: Description) {
         Dispatchers.resetMain()
     }
