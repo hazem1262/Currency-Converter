@@ -34,6 +34,12 @@ Support Different Types of Errors:
 <img src="https://github.com/hazem1262/Currency-Converter/blob/master/results/no_internet_error.png" width="300"  height="700">
 
 ## TO DO
+Add jacoco to generate test coverage, some classes with code coverage up to 100 % 
+and the ability to increase the test coverage for other classes if required
+
+<img src="https://github.com/hazem1262/Currency-Converter/blob/master/results/coverage.png" width="700"  height="700">
+
+## TO DO
 * add more styling
 * Currency Converter screen fully tested for showcase, add more tests to Transaction History Screen
 * add integration test
