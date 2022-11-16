@@ -3,4 +3,5 @@
     <string name="title_activity_transaction_history">TransactionHistoryActivity</string>
     <string name="details">Details</string>
     <string name="convert">Convert</string>
+    <string name="retry">Retry</string>
 </resources>

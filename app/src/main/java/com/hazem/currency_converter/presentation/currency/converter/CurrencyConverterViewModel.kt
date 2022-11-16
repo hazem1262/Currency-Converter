@@ -1,11 +1,12 @@
 package com.hazem.currency_converter.presentation.currency.converter
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hazem.currency_converter.base.BaseViewModel
 import com.hazem.currency_converter.data.remote.currency.CurrencyRepositoryContract
 import com.hazem.currency_converter.presentation.currency.converter.mapper.CurrencyUiMapper
 import com.hazem.currency_converter.presentation.currency.converter.mvi.CurrencyConverterState
 import com.hazem.currency_converter.presentation.currency.history.model.TransactionHistoryArgs
+import com.hazem.currency_converter.utils.network.ApplicationException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -14,11 +15,11 @@ import javax.inject.Inject
 @HiltViewModel
 class CurrencyConverterViewModel @Inject constructor(
     private val currencyRepository: CurrencyRepositoryContract
-): ViewModel() {
+): BaseViewModel() {
     val uiState = MutableStateFlow(CurrencyConverterState())
 
     fun getAvailableCurrencies() {
-        viewModelScope.launch {
+        wrapBlockingOperation {
             val availableCurrencyResponse = currencyRepository.getAvailableCurrencies()
             val availableCurrencies = CurrencyUiMapper.toCurrencyUiModel(availableCurrencyResponse)
             uiState.value = uiState.value.copy(currencies = availableCurrencies, selectedFromCurrency = availableCurrencies.first(), selectedToCurrency = availableCurrencies.first())
@@ -92,5 +93,11 @@ class CurrencyConverterViewModel @Inject constructor(
     fun getTransactionHistoryArgs(): TransactionHistoryArgs {
         val currentState = uiState.value
         return TransactionHistoryArgs(from = currentState.selectedFromCurrency?.acronym?:"", to = currentState.selectedToCurrency?.acronym?:"")
+    }
+
+    override fun handelError(throwable: Throwable) {
+        if (throwable is ApplicationException) {
+            uiState.value = uiState.value.copy(exception = throwable)
+        }
     }
 }
