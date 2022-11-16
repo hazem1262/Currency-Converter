@@ -4,7 +4,7 @@ Currency app is designed to helps customers to hand different currency conversio
 ## Design Pattern
 MVI design pattern as recommended in docs [guide to app architecture](https://developer.android.com/jetpack/docs/guide) , with some modification to the network layer adding Kotlin coroutines, also using Hilt for dependency injection
 
-## Technology used
+## Used Technologies
 
 * [Compose](https://developer.android.com/jetpack/compose) Jetpack Compose is Android’s recommended modern toolkit for building native UI
 * [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) for asynchronous programming
@@ -21,6 +21,13 @@ MVI design pattern as recommended in docs [guide to app architecture](https://de
 <img src="https://github.com/hazem1262/Currency-Converter/blob/master/results/demo.gif" width="300" height="700">
 
 ## Error Handling
+
+Support Different Types of Errors:
+* No internet Connection
+* Un Authorized
+* Other api issues based on documentation
+
+
 <img src="https://github.com/hazem1262/Currency-Converter/blob/master/results/error.gif" width="300"  height="700">
 <img src="https://github.com/hazem1262/Currency-Converter/blob/master/results/auth_error.png" width="300"  height="700">
 <img src="https://github.com/hazem1262/Currency-Converter/blob/master/results/api_error.png" width="300"  height="700">
