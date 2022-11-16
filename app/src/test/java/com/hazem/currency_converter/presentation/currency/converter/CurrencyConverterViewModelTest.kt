@@ -95,7 +95,6 @@ internal class CurrencyConverterViewModelTest {
             viewModel.onNewFromCurrencySelected(1)
 
             // Assert
-            val expectedConversionResults = mockConvertResponse.result
             val currentState = viewModel.uiState.value
             assert(currentState.fromTextFieldString == "")
             assert(currentState.toTextFieldString == "")
@@ -148,7 +147,6 @@ internal class CurrencyConverterViewModelTest {
             viewModel.onNewFromCurrencySelected(1)
 
             // Assert
-            val expectedConversionResults = mockConvertResponse.result
             val currentState = viewModel.uiState.value
             assert(currentState.fromTextFieldString == "")
             assert(currentState.toTextFieldString == "")

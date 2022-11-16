@@ -13,6 +13,10 @@ class AppInstance: Application() {
     override fun onCreate() {
         super.onCreate()
 
+        /*
+        * use timber to log events in logcat while in debug mode and the ability to log to crashyltics
+        * analytics or any other tool while being in release mode
+        * */
         if (BuildConfig.DEBUG) {
             Logger.addLogAdapter(AndroidLogAdapter())
 
