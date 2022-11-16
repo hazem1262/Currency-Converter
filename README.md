@@ -37,7 +37,7 @@ Support Different Types of Errors:
 Add jacoco to generate test coverage, some classes with code coverage up to 100 % 
 and the ability to increase the test coverage for other classes if required
 
-<img src="https://github.com/hazem1262/Currency-Converter/blob/master/results/coverage.png" width="700"  height="700">
+<img src="https://github.com/hazem1262/Currency-Converter/blob/master/results/coverage.png" height="700">
 
 ## TO DO
 * add more styling
