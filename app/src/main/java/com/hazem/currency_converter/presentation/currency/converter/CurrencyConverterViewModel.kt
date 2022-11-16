@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.hazem.currency_converter.data.remote.currency.CurrencyRepositoryContract
 import com.hazem.currency_converter.presentation.currency.converter.mapper.CurrencyUiMapper
 import com.hazem.currency_converter.presentation.currency.converter.mvi.CurrencyConverterState
+import com.hazem.currency_converter.presentation.currency.history.model.TransactionHistoryArgs
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -86,5 +87,10 @@ class CurrencyConverterViewModel @Inject constructor(
         val tempCurrency = currentState.selectedFromCurrency
         uiState.value = uiState.value.copy(selectedFromCurrency = currentState.selectedToCurrency, selectedToCurrency = tempCurrency)
         convertCurrency()
+    }
+
+    fun getTransactionHistoryArgs(): TransactionHistoryArgs {
+        val currentState = uiState.value
+        return TransactionHistoryArgs(from = currentState.selectedFromCurrency?.acronym?:"", to = currentState.selectedToCurrency?.acronym?:"")
     }
 }

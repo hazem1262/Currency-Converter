@@ -48,7 +48,7 @@ class CurrencyConverterActivity : ComponentActivity() {
                         },
                         onDetailsClicked = {
                             val intent = Intent(this, TransactionHistoryActivity::class.java)
-                            intent.putExtra(TransactionHistoryActivity.TRANSACTION_HISTORY_EXTRA_KEY, "")
+                            intent.putExtra(TransactionHistoryActivity.TRANSACTION_HISTORY_EXTRA_KEY, viewModel.getTransactionHistoryArgs())
                             startActivity(intent)
                         },
                         onSwapClicked = {

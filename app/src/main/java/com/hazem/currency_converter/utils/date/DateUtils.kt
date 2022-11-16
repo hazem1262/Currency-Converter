@@ -1,4 +1,4 @@
-package com.hazem.androidmvistarter.utils.date
+package com.hazem.currency_converter.utils.date
 
 import java.text.SimpleDateFormat
 import java.util.*

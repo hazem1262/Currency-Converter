@@ -1,3 +1,7 @@
-package com.hazem.currency_converter.presentation.currency.history
+package com.hazem.currency_converter.presentation.currency.history.model
 
-data class TransactionHistoryArgs(val from:String, val to:String)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class TransactionHistoryArgs(val from:String, val to:String) : Parcelable

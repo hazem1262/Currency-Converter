@@ -244,4 +244,22 @@ internal class CurrencyConverterViewModelTest {
             assert(currentState.selectedFromCurrency == oldToCurrency)
         }
     }
+
+    // swapValues test cases
+    @Test
+    fun `when getTransactionHistoryArgs is called, from and to currencies are wrapped in TransactionHistoryArgs`() {
+        runTest {
+            // given
+            val fromCurrency = CurrencyUiModel("EGP", "Egyptian Pound")
+            val toCurrency = CurrencyUiModel("AED", "United Arab Emirates Dirham")
+            viewModel.uiState.value = CurrencyConverterState(selectedFromCurrency = fromCurrency, selectedToCurrency = toCurrency)
+
+            // when
+            val actual = viewModel.getTransactionHistoryArgs()
+
+            // Assert
+            assert(actual.from == fromCurrency.acronym)
+            assert(actual.to == toCurrency.acronym)
+        }
+    }
 }
