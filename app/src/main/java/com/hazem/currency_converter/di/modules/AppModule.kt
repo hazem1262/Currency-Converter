@@ -46,7 +46,7 @@ class AppModule {
         * */
         val authInterceptor = Interceptor { chain ->
             val builder = chain.request().newBuilder()
-            builder.header("apikey", "Z1UhWQstvMSCWv1Ej3U4yaPouAnWevfJ")
+            builder.header("apikey", "lg7M2Sh95V2yH7cZkyVtMpVvhABSRINx")
             return@Interceptor chain.proceed(builder.build())
         }
         val okHttpClientBuilder = OkHttpClient.Builder()
