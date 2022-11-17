@@ -33,7 +33,7 @@ Support Different Types of Errors:
 <img src="https://github.com/hazem1262/Currency-Converter/blob/master/results/api_error.png" width="300"  height="700">
 <img src="https://github.com/hazem1262/Currency-Converter/blob/master/results/no_internet_error.png" width="300"  height="700">
 
-## TO DO
+## Unit Testing
 Add jacoco to generate test coverage, some classes with code coverage up to 100 % 
 and the ability to increase the test coverage for other classes if required
 
