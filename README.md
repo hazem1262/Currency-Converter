@@ -36,6 +36,8 @@ Support Different Types of Errors:
 ## Unit Testing
 Add jacoco to generate test coverage, some classes with code coverage up to 100 % 
 and the ability to increase the test coverage for other classes if required
+to generate new coverage report run task createDebugUnitTestCoverageReport
+and then check the generated report at app:build:report:coverage
 
 <img src="https://github.com/hazem1262/Currency-Converter/blob/master/results/coverage.png" height="700">
 
